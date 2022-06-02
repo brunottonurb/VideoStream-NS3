@@ -27,7 +27,7 @@ using namespace ns3;
  * 3. Wireless network with 1 server and 3 mobile clients
  * 4. Wireless network with 3 servers and 3 mobile clients
  */
-#define CASE 1
+#define CASE 2
 
 NS_LOG_COMPONENT_DEFINE ("VideoStreamTest");
 
@@ -141,7 +141,7 @@ main (int argc, char *argv[])
     wifiApNode.Create(nAp);   
     
     YansWifiChannelHelper channel = YansWifiChannelHelper::Default ();   
-    YansWifiPhyHelper phy = YansWifiPhyHelper::Default ();  
+    YansWifiPhyHelper phy = YansWifiPhyHelper ();  
     phy.SetChannel (channel.Create ());  
   
     WifiHelper wifi;
@@ -229,8 +229,8 @@ main (int argc, char *argv[])
     NodeContainer wifiApNode;
     wifiApNode.Create(nAp);   
     
-    YansWifiChannelHelper channel = YansWifiChannelHelper::Default ();   
-    YansWifiPhyHelper phy = YansWifiPhyHelper::Default ();  
+    YansWifiChannelHelper channel = YansWifiChannelHelper::Default ();  
+    YansWifiPhyHelper phy = YansWifiPhyHelper ();  
     phy.SetChannel (channel.Create ());  
   
     WifiHelper wifi;
