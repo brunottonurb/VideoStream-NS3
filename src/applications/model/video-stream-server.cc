@@ -205,7 +205,9 @@ VideoStreamServer::SendPacket (ClientInfo *client, uint32_t packetSize)
 {
   uint8_t dataBuffer[packetSize];
   sprintf ((char *) dataBuffer, "%u", client->m_sent);
-  Ptr<Packet> p = Create<Packet> (dataBuffer, packetSize);
+  Ptr<Packet> p = Create<Packet> (packetSize);
+  // TODO: do I need to fill the packet with data?
+  // p->AddAtEnd (Create<Packet> (dataBuffer, packetSize));
   if (m_socket->SendTo (p, 0, client->m_address) < 0)
   {
     NS_LOG_INFO ("Error while sending " << packetSize << "bytes to " << InetSocketAddress::ConvertFrom (client->m_address).GetIpv4 () << " port " << InetSocketAddress::ConvertFrom (client->m_address).GetPort ());
