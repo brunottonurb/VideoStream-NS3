@@ -158,7 +158,7 @@ VideoStreamClient::Send (void)
   NS_ASSERT (m_sendEvent.IsExpired ());
 
   uint8_t dataBuffer[10];
-  sprintf((char *) dataBuffer, "%hu", 0);
+  sprintf((char *) dataBuffer, "%d", 0);
   Ptr<Packet> firstPacket = Create<Packet> (dataBuffer, 10);
   m_socket->Send (firstPacket);
 
@@ -268,7 +268,7 @@ VideoStreamClient::HandleRead (Ptr<Socket> socket)
           m_videoLevel--;
           // reflect the change to the server
           uint8_t dataBuffer[10];
-          sprintf((char *) dataBuffer, "%hu", m_videoLevel);
+          sprintf((char *) dataBuffer, "%d", m_videoLevel);
           Ptr<Packet> levelPacket = Create<Packet> (dataBuffer, 10);
           socket->SendTo (levelPacket, 0, from);
           m_rebufferCounter = 0;
@@ -283,7 +283,7 @@ VideoStreamClient::HandleRead (Ptr<Socket> socket)
           m_videoLevel++;
           // reflect the change to the server
           uint8_t dataBuffer[10];
-          sprintf((char *) dataBuffer, "%hu", m_videoLevel);
+          sprintf((char *) dataBuffer, "%d", m_videoLevel);
           Ptr<Packet> levelPacket = Create<Packet> (dataBuffer, 10);
           socket->SendTo (levelPacket, 0, from);
           m_currentBufferSize = m_frameRate;
